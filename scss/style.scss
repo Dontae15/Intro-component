@@ -1,0 +1,403 @@
+//variables 
+
+//colors
+$pinky-red: hsla(0, 100%, 74%, 1);
+$green: hsla(154, 59%, 51%, 1);
+$purple: hsla(248, 33%, 49%, 1);
+$very-dark-purple: hsla(248, 9%, 26%, 1);
+$violet: hsla(247, 32%, 72%, 1);
+$white: hsla(0, 0%, 100%, 1);
+
+//font-weights
+$fw-400: 400;
+$fw-500: 500;
+$fw-600: 600;
+$fw-700: 700;
+
+//font-family
+$font-family: 'Poppins';
+
+//font-sizes
+$fs-h1-desktop: 3.125rem;
+$fs-h1-mobile: 1.75rem;
+$fs-p: 1rem;
+$fs-button: 0.9375rem;
+$fs-input: 0.875rem;
+$fs-link: 0.6875rem;
+
+//line-heights
+$lh-h1-desktop: 3.4375rem;
+$lh-h1-mobile: 2.25rem;
+$lh-p: 1.625rem;
+$lh-link-mobile: 1.3125rem;
+
+//letter-spacing
+$ls-h1-desktop: -0.521px;
+$ls-h1-mobile: -0.292px;
+$ls-form: 0.25px;
+$ls-form-header: 0.268px;
+$ls-button-secondary: 1px;
+
+//padding: 
+$grid-padding-desktop: 7.5625rem 10.3125rem;
+$grid-padding-mobile: 5.5rem 1.5rem;
+$form-padding-desktop: 2.5rem;
+$form-padding-mobile: 1.5rem;
+$input-padding-desktop: 0.9375rem 2rem;
+$input-padding-mobile: 0.9375rem 1.1875rem;
+$button-padding-desktop: 0.9375rem 1.5rem;
+$button-padding-mobile: 0.9375rem 2.8125rem;
+$form-header-padding-desktop: 1.0625rem 6rem;
+$form-header-padding-mobile: 1.125rem 4rem;
+
+//mixins
+@mixin container($max-width: 1440px, $margin: 0, $padding: 0, $border-radius: 0) {
+    max-width: $max-width;
+    width: 100%;
+    margin: $margin;
+    padding: $padding;
+    border-radius: $border-radius;
+}
+
+@mixin flex($flex-direction: row, $justify-content: center, $align-items: center, $gap: 0) {
+    display: flex;
+    flex-direction: $flex-direction;
+    justify-content: $justify-content;
+    align-items: $align-items;
+    gap: $gap;
+}
+
+@mixin grid($grid-template-columns: 1fr, $gap: 0) {
+    display: grid;
+    grid-template-columns: $grid-template-columns;
+    gap: $gap;
+}
+
+@mixin text($color: $white, $font-size: $fs-p, $font-weight: $fw-500, $line-height: normal, $letter-spacing: normal) {
+    color: $color;
+    font-size: $font-size;
+    font-weight: $font-weight;
+    line-height: $line-height;
+    font-family: $font-family;
+    letter-spacing: $letter-spacing;
+}
+
+@mixin button($background-color: $green, $padding: $button-padding-desktop, $border-radius: 5px) {
+    background-color: $background-color;
+    padding: $padding;
+    border-radius: $border-radius;
+    box-shadow: 0px -4px 0px 0px rgba(0, 0, 0, 0.09) inset;
+}
+
+//reset
+
+/* Box sizing rules */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* Remove default margin */
+* {
+  margin: 0;
+  padding: 0;
+  font: inherit;
+}
+
+/* Remove list styles on ul, ol elements with a list role, which suggests default styling will be removed */
+ul[role="list"],
+ol[role="list"] {
+  list-style: none;
+}
+
+/* Set core root defaults */
+html:focus-within {
+  scroll-behavior: smooth;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+/* Set core body defaults */
+body {
+  text-rendering: optimizeSpeed;
+  line-height: 1.5;
+}
+
+/* A elements that don't have a class get default styles */
+a:not([class]) {
+  text-decoration-skip-ink: auto;
+}
+
+/* Make images easier to work with */
+img,
+picture,
+svg {
+  max-width: 100%;
+  display: block;
+}
+
+/* Remove all animations, transitions and smooth scroll for people that prefer not to see them */
+@media (prefers-reduced-motion: reduce) {
+  html:focus-within {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+//utility classes
+.grid {
+    @include grid($grid-template-columns: repeat(2, 1fr), $gap: 2.5rem);
+    @include container($max-width: 1440px, $margin: 0 auto, $padding: $grid-padding-desktop);
+    background-color: $pinky-red;
+}
+
+.bg-img {
+    grid-column: 1 / -1;
+    grid-row: 1 / -1;
+    background-size: cover;
+}
+
+.bg-img-mobile {
+    display: none;
+}
+
+.intro-content {
+    grid-column: 1 / 2;
+    grid-row: 1 / -1;
+    @include container($max-width: 525px, $margin: auto 0);
+    @include flex($flex-direction: column, $justify-content: center, $align-items: flex-start, $gap: 1.5rem);
+}
+
+.intro-content h1 {
+    @include text($color: $white, $font-size: $fs-h1-desktop, $font-weight: $fw-700, $line-height: $lh-h1-desktop, $letter-spacing: $ls-h1-desktop);
+}
+
+.intro-content p {
+    @include text($color: $white, $font-size: $fs-p, $font-weight: $fw-500, $line-height: $lh-p);
+}
+
+.intro-form {
+    grid-column: 2 / -1;
+    grid-row: 1 / -1;
+    @include container($max-width: 540px, $margin: auto 0);
+    @include flex($flex-direction: column, $justify-content: center, $align-items: center, $gap: 1.5rem);
+}
+
+.form-header {
+    @include container($max-width: 540px, $padding: $form-header-padding-desktop, $border-radius: 10px);
+    text-align: center;
+    background-color: $purple;
+    box-shadow: 0px 8px 0px 0px rgba(0, 0, 0, 0.15);
+}
+
+.form-header p {
+    @include text($color: $white, $font-size: $fs-button, $font-weight: $fw-400, $line-height: $lh-p, $letter-spacing: $ls-form-header);
+}
+
+.form-header span {
+    @include text($color: $white, $font-size: $fs-button, $font-weight: $fw-700, $line-height: $lh-p, $letter-spacing: $ls-form-header);
+}
+
+#form {
+    @include container($max-width: 540px, $padding: $form-padding-desktop, $border-radius: 10px);
+    @include flex($flex-direction: column, $justify-content: center, $align-items: center, $gap: 1.25rem);
+    background-color: $white;
+    box-shadow: 0px 8px 0px 0px rgba(0, 0, 0, 0.15);
+    
+}
+
+#form .form-group {
+    width: 100%;
+    @include flex($flex-direction: column, $justify-content: flex-start, $align-items: flex-start, $gap: 0.5rem);   
+    position: relative;
+}
+
+
+.form-group {
+    position: relative; // Ensures that absolutely positioned elements are relative to this container
+  
+    input {
+        @include container($max-width: 360px, $padding: $input-padding-desktop, $border-radius: 5px, $margin: 0 auto);
+        @include flex($flex-direction: row, $justify-content: flex-start, $align-items: center);
+        @include text($color: $very-dark-purple, $font-size: $fs-input, $font-weight: $fw-600, $line-height: $lh-p, $letter-spacing: $ls-form);
+        border: 1px solid $purple;
+  
+      &:focus {
+        border-color: #66afe9; // Border color on focus
+        outline: none;
+      }
+  
+      &.error {
+        border-color: $pinky-red; // Change border color on error
+      }
+    }
+  
+    .input-error-icon {
+      position: absolute;
+      right: 60px; // Adjust based on padding-right of input
+      top: 33%;
+      transform: translateY(-50%);
+      width: 20px; // Icon size
+      height: 20px; // Icon size
+      background: url("data:image/svg+xml,%3Csvg width='24' height='24' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Ccircle fill='%23FF7979' cx='12' cy='12' r='12'/%3E%3Crect fill='%23FFF' x='11' y='6' width='2' height='9' rx='1'/%3E%3Crect fill='%23FFF' x='11' y='17' width='2' height='2' rx='1'/%3E%3C/g%3E%3C/svg%3E");
+      background-size: contain;
+      display: none; // Initially hidden
+      pointer-events: none; // Prevent icon from interfering with input interactions
+    }
+  
+    .error-message {
+      color: $pinky-red; // Red or any error color
+      font-size: 14px;
+      margin-top: 5px;
+      margin-left: 2rem;
+      display: none; // Initially hidden
+    }
+  
+    &.error {
+      .input-error-icon {
+        display: block; // Show the error icon when .error class is applied
+      }
+  
+      .error-message {
+        display: block; // Show the error message when .error class is applied
+      }
+    }
+  }
+  
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#form input::placeholder {
+    color: $very-dark-purple;
+    opacity: 0.5;
+}
+
+#form button {
+    @include button($background-color: $green, $padding: $button-padding-desktop);
+    @include text($color: $white, $font-size: $fs-button, $font-weight: $fw-700, $line-height: $lh-p, $letter-spacing: $ls-button-secondary);
+    cursor: pointer;
+    border: none;
+}
+
+#form button:hover {
+    background-color: hsla(154, 65%, 68%, 1);
+}
+
+#form p {
+    @include text($color: $violet, $font-size: $fs-link, $font-weight: $fw-500, $line-height: $lh-p);
+}
+
+#form p a {
+    @include text($color: $pinky-red, $font-size: $fs-link, $font-weight: $fw-700, $line-height: $lh-p);
+}
+
+
+
+
+
+
+//media queries
+
+@media (max-width: 1200px) {
+    .grid {
+        @include grid($grid-template-columns: 1fr);
+        @include container($max-width: 1200px, $margin: 0 auto, $padding: 2rem);
+        padding-block-end: 5.5rem;
+        grid-template-rows: 0.5fr 0.8fr;
+    }
+
+    .bg-img {
+        display: none;
+    }
+
+    .bg-img-mobile {
+        grid-column: 1 / -1;
+        grid-row: 1 / -1;
+        display: block;
+        margin: 0 auto;
+    }
+
+    .intro-content {
+        grid-column: 1 / -1;
+        grid-row: 1 / 2;
+        @include container($max-width: 700px, $margin: 0 auto);
+        @include flex($flex-direction: column, $justify-content: center, $align-items: center, $gap: 1.5rem);
+        text-align: center;
+        
+    }
+
+
+    .intro-form {
+        grid-column: 1 / -1;
+        grid-row: 2 / 3;
+        @include container($max-width: 640px, $margin: 0 auto);
+
+    
+    }
+
+    .intro-form p {
+        text-align: center;
+    }
+}
+
+@media (max-width: 500px) {
+
+    .intro-form {
+        margin-top: 2rem;
+    }
+    .intro-content h1 {
+        @include text($color: $white, $font-size: $fs-h1-mobile, $font-weight: $fw-700, $line-height: $lh-h1-mobile, $letter-spacing: $ls-h1-mobile);
+    }
+
+    .intro-form .form-header {
+        @include container($max-width: 327px, $padding: $form-header-padding-mobile, $border-radius: 10px);
+    }
+
+    .intro-form #form {
+        @include container($max-width: 327px, $padding: $form-padding-mobile, $border-radius: 10px);
+    }
+
+    .form-group input {
+        @include container($max-width: 100%, $padding: $input-padding-mobile, $border-radius: 5px);
+    }
+
+    
+}

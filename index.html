@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- displays site properly based on user's device -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Chivo:ital,wght@0,100..900;1,100..900&family=Epilogue:ital,wght@0,100..900;1,100..900&family=Josefin+Sans:ital,wght@0,100..700;1,100..700&family=Manrope:wght@200..800&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Overpass:ital,wght@0,100..900;1,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Raleway:ital,wght@0,100..900;1,100..900&family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
+  <link rel="stylesheet" href="css/styles.css/style.css">
+  <script src="main.js"></script>
+  <title>Frontend Mentor | Intro component with sign up form</title>
+</head>
+<body>
+  <div class="grid">
+    <img src='images/bg-intro-desktop.png' class="bg-img">
+    <img src="images/bg-intro-mobile.png" class="bg-img-mobile">
+    <div class="intro-content">
+      <h1>Learn to code by watching others</h1>
+      <p>See how experienced developers solve problems in real-time. Watching scripted tutorials is great, but understanding how developers think is invaluable. </p>
+    </div>
+    <div class="intro-form">
+      <div class="form-header">
+        <p><span>Try it free 7 days</span> then $20/mo. thereafter</p>
+      </div>
+      <form id="form" action="submit" novalidate>
+        <div class="form-group">
+          <input class='input' type="text" id="first-name" name="firstname" placeholder="First Name" required required autocomplete="given-name">
+          <span class="input-error-icon"></span>
+          <span class="error-message"></span>
+        </div>
+      
+        <div class="form-group">
+          <input class='input' type="text" id="last-name" name="lastname" placeholder="Last Name" required  required autocomplete="family-name">
+          <span class="input-error-icon"></span>
+          <span class="error-message"></span>
+        </div>
+      
+        <div class="form-group">
+          <input class='input' type="email" id="email" name="email" placeholder="Email" required required autocomplete="email">
+          <span class="input-error-icon"></span>
+          <span class="error-message"></span>
+        </div>
+      
+        <div class="form-group">
+          <input class='input' type="password" id="password" name="password" placeholder="Password" required required autocomplete="current-password">
+          <span class="input-error-icon"></span>
+          <span class="error-message"></span>
+        </div>
+
+        <button id="form-btn" type="submit">CLAIM YOUR FREE TRIAL</button>
+        <p>By clicking the button you are agreeing to our <a>Terms and Services</a></p>
+      </form>
+    </div>
+  </div>
+</body>
+</html>
